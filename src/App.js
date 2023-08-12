@@ -8,16 +8,20 @@ function App() {
   let [resultMessage, setResultMessage] = useState("");
 
   function validate() {
-    if (num1 === "" || num2 === "") {
-      setMessage("Error!");
-      if (num1 === "" && num2 === "") {
-        setResultMessage("Both Inputs Cannot Be Empty");
-      } else if (num1 === "") setResultMessage("Num1 Cannot Be Empty");
-      else if (num2 === "") setResultMessage("Num2 Cannot Be Empty");
-      return false;
+    if (!isNaN(num1) && !isNaN(num2)) {
+      if (num1 === "" || num2 === "") {
+        setMessage("Error!");
+        if (num1 === "" && num2 === "") {
+          setResultMessage("Both Inputs Cannot Be Empty");
+        } else if (num1 === "") setResultMessage("Num1 Cannot Be Empty");
+        else if (num2 === "") setResultMessage("Num2 Cannot Be Empty");
+        return false;
+      }
+      setMessage("Success!");
+      return true;
     }
-    setMessage("Success!");
-    return true;
+    setMessage("Error!");
+    setResultMessage("Please Enter Numbers only");
   }
 
   function calculate(operator) {
